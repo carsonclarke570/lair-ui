@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6250d2eab1e479857f3be69f48773366",
+    "revision": "cfc81f8d3b8ac6330a691315cb47e56d",
     "url": "/lair-ui/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/lair-ui/static/js/2.9246fc1b.chunk.js"
   },
   {
-    "revision": "4625484c82e86ec02bce",
-    "url": "/lair-ui/static/js/main.0b984b58.chunk.js"
+    "revision": "b26e1841c70c1f2a7bd8",
+    "url": "/lair-ui/static/js/main.0470e4cb.chunk.js"
   },
   {
     "revision": "d000477cc0fbbf60cb2a",
