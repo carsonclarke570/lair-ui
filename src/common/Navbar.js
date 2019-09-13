@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { useAuth0 } from '../auth0';
+
 import { makeStyles } from '@material-ui/core/styles';
 
+import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-import RED from '@material-ui/core/colors/red'
+import RED from '@material-ui/core/colors/red';
 
 const useStyles = makeStyles({
     root: {
@@ -17,27 +20,37 @@ const useStyles = makeStyles({
         minWidth: "175px",
     },
     toolbar: {
-        backgroundColor: "#E0E0E0",
+        backgroundColor: RED[300] //#E0E0E0",
     },
-    text: {
+    button: {
         marginLeft: "20px",
-        color: RED[300],
+        color: "#FFFFFF",
+    },
+    bar: {
+        width: "100%",
+        textAlign: "right"
     }
 });
 
 function Navbar() {
     const classes = useStyles()
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     return (
         <div className={classes.root}>  
-            <Toolbar className={classes.toolbar}>
-                <div className={classes.box}/>
-                <div>
-                    <Typography variant="h6" noWrap className={classes.text}>
-                        ATLASSIAN CHRONICLES
-                    </Typography>
-                </div>
-            </Toolbar>  
+            <AppBar position="fixed">
+                <Toolbar className={classes.toolbar}>
+                    <div className={classes.box}/>
+                    <div className={classes.bar}>
+                        { !isAuthenticated && (
+                            <Button variant="disabled" className={classes.button} onClick={() => loginWithRedirect({})}>Log In</Button>
+                        )}
+                        { isAuthenticated &&  
+                            <Button variant="disabled" className={classes.button} onClick={() => logout()}>Log Out</Button>
+                        }
+                    </div>
+                </Toolbar>
+            </AppBar>
         </div>
     );
 }

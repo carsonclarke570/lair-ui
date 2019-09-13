@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
+import { useAuth0 } from '../auth0';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -44,6 +46,7 @@ const useStyles = makeStyles({
 
 function Sidebar() {
     const classes = useStyles();
+    const { isAuthenticated } = useAuth0();
 
     return (
         <Drawer variant="permanent" anchor="left" className={classes.root} classes={{paper: classes.drawerPaper}}>
@@ -53,26 +56,30 @@ function Sidebar() {
                     <ListItemIcon className={classes.icon}><HomeIcon /></ListItemIcon>
                     <ListItemText primary="Home" className={classes.active}/>
                 </ListItem>
-                <ListItem button key="Characters">
-                    <ListItemIcon className={classes.icon}><AccountCircleIcon /></ListItemIcon>
-                    <ListItemText primary="Characters" className={classes.text} />
-                </ListItem>
                 <ListItem button key="Compendium">
                     <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Compendium" className={classes.text} />
                 </ListItem>
-                <ListItem button key="Example1">
-                    <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
-                    <ListItemText primary="Example" className={classes.text} />
-                </ListItem>
-                <ListItem button key="Example2">
-                    <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
-                    <ListItemText primary="Example" className={classes.text} />
-                </ListItem>
-                <ListItem button key="Example3">
-                    <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
-                    <ListItemText primary="Example" className={classes.text} />
-                </ListItem>
+                { isAuthenticated && 
+                <Fragment>
+                    <ListItem button key="Characters">
+                        <ListItemIcon className={classes.icon}><AccountCircleIcon /></ListItemIcon>
+                        <ListItemText primary="Characters" className={classes.text} />
+                    </ListItem>
+                    <ListItem button key="Example1">
+                        <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
+                        <ListItemText primary="Example" className={classes.text} />
+                    </ListItem>
+                    <ListItem button key="Example2">
+                        <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
+                        <ListItemText primary="Example" className={classes.text} />
+                    </ListItem>
+                    <ListItem button key="Example3">
+                        <ListItemIcon className={classes.icon}><FolderIcon /></ListItemIcon>
+                        <ListItemText primary="Example" className={classes.text} />
+                    </ListItem>
+                </Fragment>
+                }
             </List>
         </Drawer>
     );
