@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/lair-ui/precache-manifest.76ecfa2743f6494f09aebddc97ed9f18.js"
+  "/lair-ui/precache-manifest.0e7cec6b2edd17d461de3c051bfae65e.js"
 );
 
 self.addEventListener('message', (event) => {
