@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAuth0 } from '../auth0';
+import { useAuth0 } from '../auth/auth0';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,7 +20,10 @@ const useStyles = makeStyles({
         minWidth: "175px",
     },
     toolbar: {
-        backgroundColor: RED[300] //#E0E0E0",
+        backgroundColor: RED[300], //#E0E0E0",
+    },
+    appbar: {
+        boxShadow: "none",
     },
     button: {
         marginLeft: "20px",
@@ -28,7 +31,10 @@ const useStyles = makeStyles({
     },
     bar: {
         width: "100%",
-        textAlign: "right"
+        textAlign: "right",
+    },
+    avatar: {
+
     }
 });
 
@@ -38,15 +44,15 @@ function Navbar() {
 
     return (
         <div className={classes.root}>  
-            <AppBar position="fixed">
+            <AppBar position="fixed" className={classes.appbar}>
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.box}/>
                     <div className={classes.bar}>
                         { !isAuthenticated && (
-                            <Button variant="disabled" className={classes.button} onClick={() => loginWithRedirect({})}>Log In</Button>
+                            <Button variant="text" className={classes.button} onClick={() => loginWithRedirect({})}>Log In</Button>
                         )}
                         { isAuthenticated &&  
-                            <Button variant="disabled" className={classes.button} onClick={() => logout()}>Log Out</Button>
+                            <Button variant="text" className={classes.button} onClick={() => logout()}>Log Out</Button>
                         }
                     </div>
                 </Toolbar>
