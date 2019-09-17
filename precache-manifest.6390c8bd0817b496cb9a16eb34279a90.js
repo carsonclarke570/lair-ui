@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a96efb3de7ddda3ed6682cf9753f531e",
+    "revision": "1611b194ab8258dec0120a0276adf8d2",
     "url": "/lair-ui/index.html"
   },
   {
-    "revision": "f6128d34ccfd8e8ba5fb",
-    "url": "/lair-ui/static/js/2.9246fc1b.chunk.js"
+    "revision": "e4f9b60f933b51bfd9a5",
+    "url": "/lair-ui/static/js/2.70bb6845.chunk.js"
   },
   {
-    "revision": "02d2cdabd0e6b331cc7e",
-    "url": "/lair-ui/static/js/main.91bca76f.chunk.js"
+    "revision": "cb3a5d37b31972ab24cd",
+    "url": "/lair-ui/static/js/main.95b6437d.chunk.js"
   },
   {
     "revision": "d000477cc0fbbf60cb2a",
