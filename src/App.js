@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import RED from '@material-ui/core/colors/red';
 
 import Navbar from './common/Navbar';
-import Sidebar from './common/Sidebar';
+import Sidebar from './common/sidebar/Sidebar';
 import Character from './pages/character/Character';
 import CampaignList from './pages/campaign/CampaignList';
 import { useAuth0 } from './auth/auth0';
