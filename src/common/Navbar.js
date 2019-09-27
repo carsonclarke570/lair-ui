@@ -15,9 +15,7 @@ import Drawer from '@material-ui/core/Drawer';
 
 import MenuIcon from '@material-ui/icons/Menu'
 
-import RED from '@material-ui/core/colors/red';
-
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
         position: "fixed",
         width: "100%",
@@ -27,23 +25,23 @@ const useStyles = makeStyles({
         minWidth: "175px",
     },
     toolbar: {
-        backgroundColor: RED[300], //#E0E0E0",
+        backgroundColor: theme.palette.primary,
     },
     appbar: {
         boxShadow: "none",
     },
     button: {
         marginLeft: "20px",
-        color: "#FFFFFF",
+        color: theme.palette.primary.contrastText,
     },
     bar: {
         width: "100%",
         textAlign: "right",
     },
     menuButton: {
-        color: "#FFFFFF",
+        color: theme.palette.primary.contrastText,
     },
-});
+}));
 
 function Navbar() {
     const classes = useStyles()

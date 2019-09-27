@@ -1,26 +1,22 @@
 import React from 'react';
-import { useFetch } from 'react-hooks-fetch';
+import PropTypes from 'prop-types';
+
+import { withStyles } from '@material-ui/styles';
 import { Link } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles';
-
-import Avatar from '@material-ui/core/Avatar';
-import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import Table from '@material-ui/core/Table';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead  from '@material-ui/core/TableHead';
-import IconButton from '@material-ui/core/IconButton';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import GREY from '@material-ui/core/colors/grey';
+import Actions from './Actions'
 
-
-const useStyles = makeStyles({
+const styles = theme => ({
     root: {
         margin: "0 20px",
         marginTop: "85px",
@@ -28,60 +24,109 @@ const useStyles = makeStyles({
     divider: {
         marginBottom: "20px",
     },
-    paper: {
+    card: {
+        display: "flex",
         borderRadius: "0px",
         boxShadow: "1px 1px 4px 1px #cecece",
+        marginBottom: theme.spacing(2),
+    },
+    image: {
+        height: "100px",
+        width: "100px",
+        backgroundColor: theme.palette.grey[300]
+    },
+    details: {
+        display: "flex",
+        flexDirection: "column",
+    },
+    buttons: {
+        textAlign: "right",
+        margin: "auto 0",
+        marginLeft: "auto",
+        marginRight: theme.spacing(3)
     },
     link: {
         textDecoration: "none",
-        color: GREY[700],
-    }
+        color: theme.palette.text.primary,
+    },
 });
 
-function CampaignList() {
-    const classes = useStyles();
-    const { error, data } = useFetch(`https://glacial-caverns-84553.herokuapp.com/api/campaign`);
+class CampaignList extends React.Component {
 
-    if (error)  {
-        return <div>Error fetching campaign list!</div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            campaigns: [],
+        }
     }
-    if (!data) return null;
 
-    return (
-        <div className={classes.root}>  
-            <Typography variant="h4" gutterBottom>Campaigns</Typography>
-            <Divider className={classes.divider}/>
-            {data.length === 0 &&
-            <h2>You don't have any campaigns!</h2>
-            }
-            {data.length > 0 &&
-            <Paper className={classes.paper}>
-                <Table>
-                    <TableHead>
-                        <TableCell>Campaign</TableCell>
-                        <TableCell></TableCell>
-                        <TableCell align="right">Actions</TableCell>
-                    </TableHead>
-                {data.map(function(campaign, index){
-                    const url = `/campaign/${campaign.id}`;
-                    return (
-                        <TableRow>
-                            <TableCell align="left" style={{width: "10%"}}><Avatar src={data.img}/></TableCell>
-                            <TableCell align="left"><Link to={url} className={classes.link}><Typography variant="h6">{campaign.name}</Typography></Link></TableCell>
-                            <TableCell align="right">
-                                <span>
+    componentDidMount() {
+        fetch(process.env.REACT_APP_API_URL + "/campaign")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        campaigns: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    })
+                }
+            );
+    }
+
+    render() {
+        const { classes } = this.props;
+        const { error, campaigns } = this.state
+
+        if (error) {
+            return <div>[error]</div>
+        }
+
+        return (
+            <div className={classes.root}>  
+                <Typography variant="h4" gutterBottom>Campaigns</Typography>
+                <Divider className={classes.divider}/>
+                {campaigns.length === 0 &&
+                <h2>You don't have any campaigns!</h2>
+                }
+                {this.state.campaigns.length > 0 &&
+                    this.state.campaigns.map(function(campaign, index){
+                        const url = `/campaign/${campaign.id}`;
+                        return (
+                            <Card className={classes.card} onKeyPressCapture={index}>
+                                <CardMedia 
+                                    className={classes.image}
+                                    image={campaign.img}
+                                    title={campaign.name}
+                                />
+                                <div className={classes.details}>
+                                    <CardContent>
+                                        <Typography component="h5" variant="h5">
+                                            <Link to={url} className={classes.link}>{campaign.name}</Link>
+                                        </Typography>
+                                        <Typography variant="subtitle1" color="primary">[Display Players Here]</Typography>
+                                    </CardContent>
+                                </div>
+                                <div className={classes.buttons}>
                                     <IconButton><EditIcon /></IconButton>
-                                    <IconButton><DeleteIcon /></IconButton>
-                                </span>
-                            </TableCell>
-                        </TableRow>
-                    );
-                })}
-                </Table>
-            </Paper>
-            }
-        </div>
-    );
+                                    {/* <IconButton onClick={() => deleteCampaign(campaign.id)}><DeleteIcon /></IconButton> */}
+                                </div>
+                            </Card>
+                        );
+                    })
+                }
+                <Actions />
+            </div>
+        );
+    }
 }
 
-export default CampaignList;
+CampaignList.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(CampaignList);

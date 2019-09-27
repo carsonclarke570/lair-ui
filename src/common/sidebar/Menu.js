@@ -15,7 +15,7 @@ import FolderIcon from '@material-ui/icons/FolderOutlined';
 
 import logo from './images/logo.png';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     logo: {
         width: "15vw",
         minWidth: "200px",
@@ -25,18 +25,18 @@ const useStyles = makeStyles({
         margin: "50px auto",
     },
     icon: {
-        color: "#757575"
+        color: theme.palette.text.secondary,
     },
     text: {
         fontFamily: "'Roboto', sans-serif",
-        color: "#757575",
+        color: theme.palette.text.secondary,
     },
     active: {
         fontFamily: "'Roboto', sans-serif",
         fontWeight: "700",
-        color: "#757575",
+        color: theme.palette.text.primary,
     }
-});
+}));
 
 function Menu() {
     const classes = useStyles();
