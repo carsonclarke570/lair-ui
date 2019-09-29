@@ -13,7 +13,7 @@ import HomeIcon from '@material-ui/icons/HomeOutlined';
 import AccountCircleIcon from '@material-ui/icons/AccountCircleOutlined';
 import FolderIcon from '@material-ui/icons/FolderOutlined';
 
-import logo from './images/logo.png';
+import logo from './images/logo-alt.png';
 
 const useStyles = makeStyles(theme => ({
     logo: {

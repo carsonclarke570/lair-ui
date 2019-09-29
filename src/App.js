@@ -16,18 +16,14 @@ import CampaignList from './pages/campaign/CampaignList';
 
 import { useAuth0 } from './auth/auth0';
 
-import { red, grey } from '@material-ui/core/colors';
-
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: red[300],
-      contrastText: grey[50],
-    },
-    secondary: {
-      main: "#e5ac73",
-    },
+    primary: { main: '#26C6DA', contrastText: '#FAFAFA' },
+    secondary: { main: '#26da95', contrastText: '#FAFAFA' }
   },
+  shape: {
+    borderRadius: 0
+  }
 });
 
 const useStyles = makeStyles(theme => ({

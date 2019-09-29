@@ -61,6 +61,29 @@ class CampaignList extends React.Component {
         }
     }
 
+    deleteCampaign(id) {
+        fetch(`${process.env.REACT_APP_API_URL}/campaign/${id}` ,{
+            method: 'DELETE'
+        }).then(
+            (resp) => {
+                var copy = [...this.state.campaigns];
+                for (var i = 0; i < copy.length; i++) {
+                    if (copy[i].id === id && resp.ok) {
+                        copy.splice(i, 1);
+                    }
+                }
+                this.setState({
+                    campaigns: copy
+                })
+            },
+            (err) => {
+                this.setState({ 
+                    error: err
+                })
+            }
+        );
+    }
+
     componentDidMount() {
         fetch(process.env.REACT_APP_API_URL + "/campaign")
             .then(res => res.json())
@@ -70,9 +93,9 @@ class CampaignList extends React.Component {
                         campaigns: result
                     });
                 },
-                (error) => {
+                (err) => {
                     this.setState({
-                        error
+                        error: err
                     })
                 }
             );
@@ -83,7 +106,7 @@ class CampaignList extends React.Component {
         const { error, campaigns } = this.state
 
         if (error) {
-            return <div>[error]</div>
+            return <div>{ error }</div>
         }
 
         return (
@@ -97,7 +120,7 @@ class CampaignList extends React.Component {
                     this.state.campaigns.map(function(campaign, index){
                         const url = `/campaign/${campaign.id}`;
                         return (
-                            <Card className={classes.card} onKeyPressCapture={index}>
+                            <Card className={classes.card} key={index}>
                                 <CardMedia 
                                     className={classes.image}
                                     image={campaign.img}
@@ -113,11 +136,11 @@ class CampaignList extends React.Component {
                                 </div>
                                 <div className={classes.buttons}>
                                     <IconButton><EditIcon /></IconButton>
-                                    {/* <IconButton onClick={() => deleteCampaign(campaign.id)}><DeleteIcon /></IconButton> */}
+                                    <IconButton onClick={() => this.deleteCampaign(campaign.id)}><DeleteIcon /></IconButton>
                                 </div>
                             </Card>
                         );
-                    })
+                    }, this)
                 }
                 <Actions />
             </div>
