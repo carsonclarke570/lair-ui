@@ -12,14 +12,15 @@ import Navbar from './common/Navbar';
 import Sidebar from './common/sidebar/Sidebar';
 import Home from './pages/home/Home';
 import Character from './pages/character/Character';
+import CharacterList from './pages/character/CharacterList';
 import CampaignList from './pages/campaign/CampaignList';
 
 import { useAuth0 } from './auth/auth0';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#26C6DA', contrastText: '#FAFAFA' },
-    secondary: { main: '#26da95', contrastText: '#FAFAFA' }
+    primary: { main: '#e57373', contrastText: '#FAFAFA' },
+    secondary: { main: '#e5ac73', contrastText: '#FAFAFA' }
   },
   shape: {
     borderRadius: 0
@@ -62,10 +63,10 @@ function App() {
           <Suspense fallback={<CircularProgress className={classes.loading}/>}>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/campaign/:id" component={Character} />
-              <Route path="/campaign" component={CampaignList} />
-              <Route path="/character/:id" component={Character} />
-              <Route path="/character" exact />
+              <Route path="/campaign/:id" exact component={Character} />
+              <Route path="/campaign" exact component={CampaignList} />
+              <Route path="/character/:id" exact component={Character} />
+              <Route path="/character" exact component={CharacterList} />
             </Switch>
           </Suspense>
         </div>
