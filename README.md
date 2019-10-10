@@ -27,30 +27,28 @@ TO-DO: Add tests
 
 ## Built With
 
-* [Lair API](https://github.com/carsonclarke570/lair-api) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Lair API](https://github.com/carsonclarke570/lair-api) - The backend API of Lair
+* [Material UI](https://github.com/mui-org/material-ui) - Material Design javascript implementation
+* [create-react-app](https://github.com/facebook/create-react-app) - Used to generate project structure
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Feel free open a pull request and a Code Owner will get around to reviewing it. Don't hesitate to open a new issue or contact an author with any questions you may have.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+TO-DO: Begin versioning
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Carson Clarke-Magrab** - *Initial work* - [carsonclarke570](https://github.com/carsonclarke570)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/lair-ui/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+TO-DO: Add license
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* The UberEats app
