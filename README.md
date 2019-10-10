@@ -43,8 +43,6 @@ TO-DO: Begin versioning
 
 * **Carson Clarke-Magrab** - *Initial work* - [carsonclarke570](https://github.com/carsonclarke570)
 
-See also the list of [contributors](https://github.com/lair-ui/contributors) who participated in this project.
-
 ## License
 
 TO-DO: Add license
