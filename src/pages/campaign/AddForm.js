@@ -56,8 +56,6 @@ class AddForm extends React.Component {
     }
 
     render() {
-        const { classes } = this.props
-
         return (
             <Dialog open={this.props.open} onClose={this.props.onClose} aria-labelledby="form-title" >
                 <form onSubmit={this.handleSubmit}>
